@@ -1,0 +1,258 @@
+<section class=section>
+  <div class="question-list">
+    <div class="quiz-info">
+      <h1>
+            {{quiz.quizName}}
+      </h1>
+      <!-- showQuizOptions -->
+      <button class="quiz-info-button" (click)="changeSettingQuiz()">Settings</button>
+    </div>
+
+    <div class="question-list-container">
+      <div *ngFor="let item of questions; let indexElement=index;" >
+        <app-question-item
+        [questionItem]="item"
+        [indexQuestion]="indexElement+1"
+        (itemIndexSelect)="getQuestionItemIndex($event)"
+        (questionItemSelect)="getQuestionItem($event)"></app-question-item>
+      </div>
+
+      <!-- <app-question-item></app-question-item> -->
+      <!-- {quizData.questionList.length > 0 &&
+      quizData.questionList.map((question) => ( -->
+      <!-- <QuestionListItem onClick={()=> showQuestion(question.questionIndex)}
+        key={question.questionIndex}
+        number={question.questionIndex}
+        type={question.questionType}
+        name={question.question}
+        time={question.answerTime}
+        image={question.backgroundImage}
+        /> -->
+      <!-- ))} -->
+      <!-- onClick=
+          isQuestionDataSave
+          ? addNewQuestion()
+          : alert(Save changes in question data first)
+          }} -->
+      <button class="add-question-button" (click)="addQuestion()">Add question</button>
+    </div>
+  </div>
+
+  <div class="question-creator">
+    <!-- handleQuestionChange -->
+    <input type="text" name="question" value={{questionItem?.title}}
+     placeholder="Write your question here"
+      class="question-name"
+      [(ngModel)]="questionItem!.title"
+      (ngModelChange)="updateQuestion()"
+      />
+
+    <div class="image-container">
+      <div >
+        <input type="file" style="width: 100%;" (change)="onChangeQuestion($event)"/>
+        <!--<FileBase
+            type="FileBase"
+            multiple={false}
+            onDone={({ base64 }) => {
+              setQuestionData({ ...questionData, backgroundImage: base64 })
+              setQuestionImage(base64)
+            }}
+          /> -->
+      </div >
+      <img [src]="questionItem?.backgroundImage" alt="questionImage"  style="width: 50%; height: 70%;"/>
+    </div>
+
+    <div class="answers-container" >
+      <div class="answer-field" *ngFor="let item of questionItem?.answers" >
+        <!-- <input type="text" name="a" value="questionData answerList 0 body" placeholder="Answer A" class="answer-input" /> -->
+        <app-answer-input style="width: 100%;" [answerItem]="item" [lengthAnswer]="questionItem!.answers.length" (answerItemSelect)="onAnswerCheckChange($event)" ></app-answer-input>
+        <!-- <AnswerInput
+            value={questionData.answerList[0].body}
+            name={"a"}
+            onChange={(e) => {
+              isQuestionTrueFalse
+                ? updateAnswer(e.target.name, "True", 0)
+                : updateAnswer(e.target.name, e.target.value, 0)
+            }}
+            onClick={() => {
+              correctAnswerCount < maxCorrectAnswerCount ||
+              questionData.answerList[0].isCorrect
+                ? setCorrectAnswer(0)
+                : alert(
+                    isLanguageEnglish
+                      ? "You already choose the correct answer"
+                      : "Wybrałeś już poprawną odpowiedź"
+                  )
+            }}
+            isAnswerCorrect={questionData.answerList[0].isCorrect}
+            svg={triangle}
+          /> -->
+      </div>
+      <!-- {!isQuestionTrueFalse && ( -->
+    </div>
+  </div>
+
+  <div class="options">
+    <button (click)="saveQuiz()">Save</button>
+    <div *ngIf="isSettingQuiz"
+    style="display: block"
+     class="question-options">
+      <span>Quiz</span>
+      <div class="option-label">
+        <label>Title</label>
+      </div>
+      <input value={{quiz.quizName}}
+      type="text" name="name" [(ngModel)]="quiz.quizName" />
+      <div class="option-label">
+        <label>Description</label>
+      </div>
+      <input value={{quiz.quizDescription}} type="text" name="description" [(ngModel)]="quiz.quizDescription" />
+      <div class="option-label">
+        <label>Access</label>
+      </div>
+      <div class="option-btn" >
+        <!-- onClick={() => {
+            setIsQuizPublic(true)
+            setQuizData({ ...quizData, isPublic: true })
+          }}
+          className={styles["option-button"]}
+          style={{
+            backgroundColor: isQuizPublic ? "rgb(19, 104, 206)" : "inherit",
+            color: isQuizPublic ? "white" : "rgb(110, 110, 110)",
+          }} -->
+        <button
+        class="option-button"
+        style="
+          background-color: rgb(19, 104, 206);
+          color: white" >Public</button>
+        <!-- onClick={() => {
+            setIsQuizPublic(false)
+            setQuizData({ ...quizData, isPublic: false })
+          }}
+          className={styles["option-button"]}
+          style={{
+            backgroundColor: isQuizPublic ? "inherit" : "rgb(19, 104, 206)",
+            color: isQuizPublic ? "rgb(110, 110, 110)" : "white",
+          }} -->
+        <button
+        class="option-button"
+        style="
+          background-color: inherit;
+          color: rgb(110, 110, 110);">Private</button>
+      </div>
+      <div className="option-label">
+        <label> Background Image</label>
+      </div>
+      <div>
+        <input type="file" style="width: 100%;" (change)="onChangeQuiz($event)"/>
+        <!-- <FileBase
+          type="file"
+          multiple={false}
+          onDone={({ base64 }) => {
+            setQuizData({ ...quizData, backgroundImage: base64 })
+            setQuizImage(base64)
+          }}
+        /> -->
+      </div>
+      <img class="quiz-image" [src]="quiz.quizImage" alt="imageQuiz" id="blah" />
+      <div
+      style="margin-top: 10%;">
+        <button class="option-button" (click)="updateQuiz()">
+          Submit</button>
+      </div>
+    </div>
+    <!-- isQuizOptionsVisible -->
+    <div *ngIf="!isSettingQuiz"
+    style="display:block"
+     class="question-options">
+      <div class="option">
+        <div class="option-label">
+          <label>
+            Question type
+          </label>
+        </div>
+        <!-- onChange={(e) => {
+            handleQuestionChange(e)
+            changeQuestionType()
+          }}
+          name="questionType"
+          value={questionData.questionType} -->
+        <select [(ngModel)]="questionItem!.questionType" (ngModelChange)="changeQuestionType()">
+          <option defaultValue disabled>
+            Select question type
+          </option>
+          <option
+          *ngFor="let type of this.questionTypeList"
+          [selected]="type === questionItem?.questionType"
+          [value]="type" >
+          {{ type }}
+        </option>
+        </select>
+      </div>
+      <div class="option">
+        <div class="option-label">
+          <label>Time limit</label>
+        </div>
+        <!-- onChange={handleQuestionChange}
+          name="answerTime"
+          value={questionData.answerTime} -->
+        <select [(ngModel)]="questionItem!.answerTime" (ngModelChange)="updateQuestion()">
+          <option defaultValue disabled>
+            Set time limit
+          </option>
+          <option
+          *ngFor="let type of this.questionTimeList"
+          [selected]="type === questionItem?.answerTime"
+          [value]="type" >
+          {{ type }} seconds
+        </option>
+        </select>
+      </div>
+      <div class="option">
+        <div class="option-label">
+          <label>Points</label>
+        </div>
+        <!-- onChange={handleQuestionChange} name="pointType" value={questionData.pointType} -->
+        <select [(ngModel)]="questionItem!.point" (ngModelChange)="updateQuestion()">
+          <option defaultValue disabled>Set points type
+          </option>
+          <option
+          *ngFor="let type of this.questionPointList"
+          [selected]="type === questionItem?.point"
+          [value]="type" >
+          {{ type }}
+        </option>
+        </select>
+      </div>
+      <div class=option>
+        <div class="option-label">
+          <label>Answer options</label>
+        </div>
+        <!-- changeMaxCorrectAnswerCount -->
+        <select>
+          <option defaultValue disabled value="1">
+            Set answer options
+          </option>
+          <option value="1">
+            Single choice
+          </option>
+          <option value="4">
+            Multiple choice
+          </option>
+        </select>
+      </div>
+      <div
+      style="
+        margin-top: 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;"
+      >
+        <!-- handleQuestionSubmit -->
+        <button class="option-button" (click)="duplicateQuestion()">Duplicate</button>
+        <!-- handleQuestionRemove -->
+        <button class="option-button" (click)="deleteQuestion()"> Delete</button>
+      </div>
+    </div>
+  </div>
+</section>

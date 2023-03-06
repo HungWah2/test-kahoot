@@ -1,0 +1,140 @@
+
+game
+
+  hostId: ObjectId | ref: "User",
+
+  quizId: ObjectId | ref: "Quiz",
+
+  pin: type: String
+
+  isLive: Boolean | default: false,
+
+  playerList: [
+    { 
+	 ObjectId,
+      ref: "User",
+    },
+  ],
+
+  : Date
+
+  playerResultList: [
+    {
+      type: ObjectId,
+      ref: "PlayerResult",
+    },
+  ],
+
+leaderboard
+ gameId: ObjectId | ref: "Game",
+
+  playerResultList: [
+    {
+      type: ObjectId,
+      ref: "PlayerResult",
+    },
+  ],
+
+  questionLeaderboard: [
+    {
+      questionIndex:  Number ,
+      questionResultList: [
+        {
+
+          playerId: ObjectId | ref: "User"
+
+          playerPoints: Number ,
+        },
+      ],
+    },
+  ],
+
+  currentLeaderboard: [
+    {
+      questionIndex: Number ,
+      leaderboardList: [
+        {
+          playerId:  ObjectId | ref: "User"
+          playerCurrentScore: Number,
+        },
+      ],
+    },
+  ],
+
+playResult
+
+  playerId: ObjectId | ref: "User",
+
+  gameId: ObjectId | ref: "Game",
+
+  score: Number | default: 0,
+
+  answers: [
+    {
+      questionIndex: Number,
+
+      answered:  Boolean | default: false,
+
+      answers: [ String],
+
+      time: Number ,
+      points: Number | default: 0,
+    },
+  ],
+
+quiz
+
+  name: String | unique: true 
+
+  description: String
+
+  backgroundImage: String
+
+  creatorId: ObjectId | ref: "User",
+
+  isPublic: Boolean | default: true 
+
+  likesCount: [String] | default: [] 
+
+  dateCreated: Date, default: new Date()
+
+  questionList: [
+    {
+      questionType:String | enum: ["True/False", "Quiz"],
+
+      pointType: String | enum: ["Standard", "Double", "BasedOnTime"],
+
+      answerTime: Number,
+        min: 5,
+        max: 90,
+      
+      backgroundImage: String 
+
+      question: String,
+
+
+      answerList: [
+        {
+          name: String 
+          body: String 
+          isCorrect: Boolean
+        },
+      ],
+
+      questionIndex: Number
+    },
+  ],
+
+users
+
+ userType: String | ["Student", "Teacher"]
+
+ firstName: String
+
+ lastName: String
+
+ userName: type: String | unique
+
+ mail: String | unique: true,
+
+ password: String

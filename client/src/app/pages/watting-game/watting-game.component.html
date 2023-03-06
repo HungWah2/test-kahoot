@@ -1,0 +1,18 @@
+<div class="waiting-room">
+  <h1 class="title">Waiting room</h1>
+  <h2 class="header">Show PIN to your students : {{pinGame}}</h2>
+  <div class="players-list">
+    <h1 class="leaderboard-title">Player List</h1>
+    <button>Start</button>
+    <div *ngIf="playerList.length!==0; else listPlayerEmpty">
+      <ol *ngFor="let item of playerList">
+        <li>
+          <mark>{{item.name}}</mark>
+        </li>
+      </ol>
+    </div>
+    <ng-template #listPlayerEmpty>
+      <h1 class="leaderboard-title">Waiting for other players</h1>
+    </ng-template>
+  </div>
+</div>

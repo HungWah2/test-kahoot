@@ -1,0 +1,144 @@
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  height: 100%;
+  // background-color: blueviolet;
+}
+
+.question-name {
+  width: 80%;
+  height: 20%;
+  border: 1px solid #cfd8dc;
+  border-radius: 0.5rem;
+  font-size: 3vw;
+  color: rgb(110, 110, 110);
+  outline: none;
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 1px 3px #80838b;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+  // background-color: white;
+  margin: 20px 0;
+  position: relative;
+}
+
+.question-time {
+  border-radius: 50%;
+  border: 2px solid rgb(1, 1, 1);
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 3rem;
+  position: absolute;
+  left: 0;
+}
+
+.question-image{
+  width: 25rem;
+  height: 17rem;
+  // background-color: rgb(154, 38, 38);
+
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.answers-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  // background-color: #80838b;
+}
+
+.answers-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 65rem;
+  height: 10rem;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  // padding: 1rem;
+  // background-color: chartreuse;
+}
+
+.answer-field {
+  width: 40%;
+  height: 20%;
+  // margin: 10px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.answer-field h2 {
+  // background-color: inherit;
+  width: 65%;
+  height: 50%;
+  outline: none;
+  border: none;
+  font-size: 3vw;
+  color: white;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.answer-field:nth-of-type(1) {
+  background-color: rgba(255, 0, 0, 0.85);
+}
+
+.answer-field:nth-of-type(2) {
+  background-color: rgba(0, 0, 255, 0.85);
+}
+
+.answer-field:nth-of-type(3) {
+  background-color: rgba(0, 128, 0, 0.85);
+}
+
+.answer-field:nth-of-type(4) {
+  background-color: rgba(255, 165, 0, 0.85);
+}
+
+.answer-check {
+  width: 10%;
+  height: 100%;
+  // background-color: grey;
+}
+
+.answer-check input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}

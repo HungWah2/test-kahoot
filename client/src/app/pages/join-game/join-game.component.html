@@ -1,0 +1,15 @@
+<div class="page">
+  <div class="section" *ngIf="!isPlayerAdded; else addPlayerLoading">
+    <h2>Join game</h2>
+    <input [(ngModel)]="pin" type="text" ref={pinRef} placeholder="Write here a pin" />
+    <input [(ngModel)]="namePlayer" type="text" ref={pinRef} placeholder="Write name" />
+    <button (click)="joinGame()">Send</button>
+  </div>
+  <ng-template #addPlayerLoading>
+    <div class="section" *ngIf="isPlayerAdded">
+      <h2>You joined the game</h2>
+      <h4>Waiting on a host to start the game</h4>
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

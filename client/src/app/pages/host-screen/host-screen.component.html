@@ -1,0 +1,68 @@
+<div class="page">
+    <div class="lobby" *ngIf="!isGameStarted">
+      <div class="waiting-room">
+        <h1 class="title">Waiting room</h1>
+        <h2 class="header">Show PIN to your students : {{pinGame}}</h2>
+        <div class="players-list">
+          <h1 class="leaderboard-title">Player List</h1>
+          <div class="players-list-list"   *ngIf="playerList.length!==0; else listPlayerEmpty">
+            <div  class="players-list-list-item"  *ngFor="let item of playerList">
+                <p>{{item.name}}</p>
+            </div>
+          </div>
+          <ng-template #listPlayerEmpty>
+            <h1 class="leaderboard-title">Waiting for other players</h1>
+          </ng-template>
+        </div>
+      </div>
+      <button (click)="startGame()" >Start a game</button>
+    </div>
+
+    <div class="question-preview" *ngIf="isPreviewScreen">
+      <h1>{{this.timer}}</h1>
+    </div>
+
+    <div class="question-preview" *ngIf="isQuestionScreen">
+      <!-- <Question
+        key={questionData.questionIndex}
+        question={questionData}
+        timer={timer}
+        host={true}
+      /> -->
+      <app-question-show (questionNext)="nextQues()"  [questionItem]="questionData" ></app-question-show>
+    </div>
+
+  <!-- {isQuestionResultScreen && ( -->
+    <div class="question-preview" *ngIf="isQuestionResultScreen">
+      <div class="leaderboard">
+        <h1 class="leaderboard-title">Question result</h1>
+        <button (click)="showNewQuestion()">Next</button>
+        <ol>
+          <!-- {questionResult.questionResultList.map((player) => ( -->
+            <li *ngFor="let player of playerList">
+              <!-- {playerList
+                .filter((x) => x.id === player.playerId)
+                .map((x) => ( -->
+                  <span>{{player.name}}</span>
+              <p>{{player.score}}</p>
+            </li>
+        </ol>
+      </div>
+    </div>
+    <div class="question-preview" *ngIf="isLeaderboardScreen">
+      <div class="leaderboard">
+        <h1 class="leaderboard-title">Leaderboard </h1>
+        <button (click)="reloadGame()">Play again</button>
+        <ol>
+          <!-- {currentLeaderboard.leaderboardList.map((player) => ( -->
+            <li *ngFor="let player of playerList">
+              <!-- {playerList
+                .filter((x) => x.id === player.playerId)
+                .map((x) => ( -->
+                <span>{{player.name}}</span>
+              <p>{{player.score}}</p>
+            </li>
+        </ol>
+      </div>
+    </div>
+</div>

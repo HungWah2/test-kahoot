@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-argular": {
+      "hosting": {
+        "client": [
+          "fir-argular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-argular"
+  }
+}

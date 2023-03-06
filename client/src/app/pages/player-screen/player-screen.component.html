@@ -1,0 +1,71 @@
+<div class="page">
+    <div class="question-preview" *ngIf="isPreviewScreen">
+      <h1>{{timer}}</h1>
+    </div>
+
+    <div class="question-preview" *ngIf="isQuestionScreen">
+      <div class="answers-container">
+        <div class="answer-field">
+          <h2 >dsjfhkgasdhj</h2>
+            <div onClick={onClick} class="answer-check">
+              <input type="checkbox" [checked]="isAnswerClicked"
+              [(ngModel)]="isAnswerClicked"
+              (change)="onAnswerCheckChange()" />
+            </div>
+        </div>
+
+        <div class="answer-field">
+          <h2 >dsjfhkgasdhj</h2>
+            <div onClick={onClick} class="answer-check">
+              <input type="checkbox" [checked]="isAnswerClicked"
+              [(ngModel)]="isAnswerClicked"
+              (change)="onAnswerCheckChange()" />
+            </div>
+        </div>
+
+        <div class="answer-field">
+          <h2 >dsjfhkgasdhj</h2>
+            <div onClick={onClick} class="answer-check">
+              <input type="checkbox" [checked]="isAnswerClicked"
+              [(ngModel)]="isAnswerClicked"
+              (change)="onAnswerCheckChange()" />
+            </div>
+        </div>
+
+        <div class="answer-field">
+          <h2 >dsjfhkgasdhj</h2>
+            <div onClick={onClick} class="answer-check">
+              <input type="checkbox" [checked]="isAnswerClicked"
+              [(ngModel)]="isAnswerClicked"
+              (change)="onAnswerCheckChange()" />
+            </div>
+        </div>
+
+        <!-- <Answer
+          icon={triangle}
+          showText={false}
+          isAnswerClicked={answer.answers.includes("a")}
+          onClick={() => checkAnswer("a")}
+        /> -->
+
+      </div>
+    </div>
+
+    <div class="question-preview" *ngIf="isQuestionAnswered" (click)="showResult()">
+      <h1>Wait for a result</h1>
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <!-- style="backgroundColor: result.points > 0 ? "green" : "red" > -->
+    <div class="question-preview" style="background-color:green" *ngIf="isResultScreen && answerCorrect">
+      <h1>Result</h1>
+              <!-- {result.points > 0? -->
+      <h3>Wrong</h3>
+      <h3 >Points: result.points</h3>
+    </div>
+    <div class="question-preview" style="background-color:red" *ngIf="isResultScreen && !answerCorrect">
+      <h1>Result</h1>
+      <h3>Wrong</h3>
+      <h3 >Points: result.points</h3>
+    </div>
+</div>

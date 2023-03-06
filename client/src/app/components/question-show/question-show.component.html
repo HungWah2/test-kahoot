@@ -1,0 +1,76 @@
+<div class="question">
+  <!-- {host && ( -->
+
+    <!-- questionType: string;
+    point: number;
+    answerTime: number;
+    backgroundImage: string;
+    title: string;
+    answers: Answer[];
+    questionId: number; -->
+
+  <div class="question-name">{{questionItem.title}}</div>
+  <div class="container">
+    <div class="question-time">{{timer}}</div>
+    <div class="question-image">
+        <img [src]="questionItem.backgroundImage"
+        alt="question.backgroundImage" />
+    </div>
+    <button (click)="nextQuestion()" *ngIf="isNextQuestion">Next</button>
+    <button (click)="skipQuestion()" >Skip</button>
+      <!-- <div class="no-image"></div> -->
+  </div>
+
+
+
+  <div class="answers-container">
+    <div class="answer-field" *ngFor="let item of questionItem.answers">
+      <h2 >{{item.body}}</h2>
+        <div  class="answer-check" *ngIf="timer==0 && item.isCorrect" >
+          <input type="checkbox" [checked]="item.isCorrect"
+          [(ngModel)]="item.isCorrect"
+          />
+        </div>
+    </div>
+
+    <!-- <div class="answer-field" >
+      <h2 >item.body</h2>
+        <div onClick={onClick} class="answer-check">
+          <input type="checkbox" [checked]="isAnswerClicked"
+          [(ngModel)]="isAnswerClicked"
+          (change)="onAnswerCheckChange()"/>
+        </div>
+    </div>
+    <div class="answer-field" >
+      <h2 >item.body</h2>
+        <div onClick={onClick} class="answer-check">
+          <input type="checkbox" [checked]="isAnswerClicked"
+          [(ngModel)]="isAnswerClicked"
+          (change)="onAnswerCheckChange()"/>
+        </div>
+    </div>
+    <div class="answer-field" >
+      <h2 >item.body</h2>
+        <div onClick={onClick} class="answer-check">
+          <input type="checkbox" [checked]="isAnswerClicked"
+          [(ngModel)]="isAnswerClicked"
+          (change)="onAnswerCheckChange()"/>
+        </div>
+    </div>
+    <div class="answer-field" >
+      <h2 >item.body</h2>
+        <div onClick={onClick} class="answer-check">
+          <input type="checkbox" [checked]="isAnswerClicked"
+          [(ngModel)]="isAnswerClicked"
+          (change)="onAnswerCheckChange()"/>
+        </div>
+    </div> -->
+    <!-- <Answer
+      body={question.answerList[0].body}
+      icon={triangle}
+      showText={host ? true : false}
+      isAnswerClicked={isAnswerClicked}
+      onClick={onClick}
+    />-->
+  </div>
+</div>
